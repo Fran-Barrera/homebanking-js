@@ -17,9 +17,9 @@ function iniciarSesion() {
 
 function menu() {
   let opcion;
-  do {
+  while (opcion !== "4"){
     opcion = prompt(
-      "Seleccione una opción:\n1. Consultar mi saldo\n2. Depositar dinero\n3. Transferir dinero\n4. Salir"
+      "Seleccione una opción: 1. Consultar mi saldo 2. Depositar dinero 3. Transferir dinero 4. Salir"
     );
     switch (opcion) {
       case "1":
@@ -37,7 +37,7 @@ function menu() {
       default:
         console.log("Opción no válida.");
     }
-  }  while (opcion !== "4");
+  }
 }
 
 function consultarSaldo() {
@@ -45,7 +45,7 @@ function consultarSaldo() {
 }
 
 function depositar() {
-  const monto = parseFloat(prompt("Ingrese el monto a depositar:"));
+  const monto = parseInt(prompt("Ingrese el monto a depositar:"));
   const confirmar = prompt("Seguro que desea depositar: $" + monto + " ?. si/no")
   if (confirmar == "si"){
     console.log("Depósito exitoso. Usted ha depositado: $", monto);
@@ -56,7 +56,7 @@ function depositar() {
 
 function transferir() {
   const destinatario = prompt("Ingrese alias o CVU del destinatario");
-  const monto = parseFloat(prompt("Ingrese el monto a transferir:"));
+  const monto = parseInt(prompt("Ingrese el monto a transferir:"));
   const confirmar = prompt("Seguro que desea transferir: $" + monto + " a " + destinatario + " ?. si/no")
   if (monto > saldo) {
     console.log("Fondos insuficientes.");
