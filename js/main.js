@@ -1,4 +1,4 @@
-let usuario = "Francisco"
+/* let usuario = "Francisco"
 let saldo = 100000;
 const contraseña = "1234";
 
@@ -64,5 +64,17 @@ function transferir() {
     console.log("Transferencia exitosa. Usted ha transferido: $", monto, "a", destinatario);
   } else {
     console.log("Operacion cancelada");
+  }
+}
+*/
+
+function inicioSesion() {
+  const usuario = document.getElementById("usuario");
+  const contraseña = document.getElementById("contraseña");
+
+  if(usuario === "fran11" && contraseña === "1234"){
+    window.location.href = "inicio.html"
+  } else {
+    alert("Usuario y/o contraseña incorrectos")
   }
 }
