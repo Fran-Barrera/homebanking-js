@@ -1,0 +1,17 @@
+[
+    {
+        "fecha" : "2025-12-01",
+        "descripcion": "Pago de servicios",
+        "monto":40000
+    },
+    {
+        "fecha" : "2025-12-02",
+        "descripcion": "Varios",
+        "monto":15000
+    },
+    {
+        "fecha" : "2025-12-03",
+        "descripcion": "Supermercado",
+        "monto": 25000
+    }
+]

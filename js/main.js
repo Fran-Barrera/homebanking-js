@@ -1,80 +1,100 @@
-/* let usuario = "Francisco"
-let saldo = 100000;
-const contraseña = "1234";
+// saldo - tranferencias - nuevo movimiento
 
-iniciarSesion();
+let saldoDisponible = 200000;
 
-function iniciarSesion() {
-  const pin = prompt("Ingrese su PIN de seguridad:");
-  
-  if (pin === contraseña) {
-    console.log("Bienvenido", usuario, "al Banco Nacion");
-    menu();
-  } else {
-    console.log("PIN incorrecto.");
-  }
+function actualizarSaldo() {
+    const saldoElemento = document.getElementById("saldoInicial");
+    saldoElemento.textContent = `$${saldoDisponible.toLocaleString()}`;
 }
 
-function menu() {
-  let opcion;
-  while (opcion !== "4"){
-    opcion = prompt(
-      "Seleccione una opción: 1. Consultar mi saldo 2. Depositar dinero 3. Transferir dinero 4. Salir"
-    );
-    switch (opcion) {
-      case "1":
-        consultarSaldo();
-        break;
-      case "2":
-        depositar();
-        break;
-      case "3":
-        transferir();
-        break;
-      case "4":
-        console.log("Gracias por usar nuestro servicio. ¡Hasta luego!");
-        break;
-      default:
-        console.log("Opción no válida.");
+actualizarSaldo();
+
+const transferenciaForm = document.getElementById("transferenciaForm");
+let movimientos = JSON.parse(localStorage.getItem("movimientos")) || [];
+
+const hoy = new Date().toISOString().split('T')[0];
+document.getElementById('fecha').value = hoy;
+
+transferenciaForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const monto = document.getElementById("monto").value;
+    const destinatario = document.getElementById("destinatario");
+    const descripcion = document.getElementById("descripcion").value;
+
+    if (monto <= 0) {
+        Swal.fire({
+            icon: "error",
+            title: "Ingrese un monto valido",
+            showConfirmButton: false,
+            timer: 2000
+        });
+        return;
+    } else if (monto > saldoDisponible) {
+        Swal.fire({
+            icon: "error",
+            title: "Saldo insuficiente",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return;
+    } else {
+        Swal.fire({
+            icon: "success",
+            title: `Se enviaron $${monto} a ${destinatario.value}`,
+            showDenyButton: false,
+            showCancelButton: true,
+            confirmButtonText: "Descargar comprobante",
+            cancelButtonText: "Finalizar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire("Comprobante descargado", "", "success");
+            }
+        });
     }
-  }
+
+    saldoDisponible -= monto;
+    actualizarSaldo();
+
+    const nuevoMovimiento = {
+        fecha: hoy,
+        descripcion: descripcion,
+        monto: monto
+    };
+
+    movimientos.push(nuevoMovimiento);
+    renderizarMovimientos(movimientos);
+
+    transferenciaForm.reset();
+    document.getElementById('fecha').value = hoy;
+});
+
+// movimientos
+
+const movimientosContenedor = document.getElementById("movimientos");
+const URL = "../db/data.json";
+
+function mostrarMovimientos() {
+    fetch(URL)
+        .then(response => response.json())
+        .then(data => {
+            movimientos = data;
+            renderizarMovimientos(data)
+        })
+        .catch(err => console.log("Error al cargar json", err))
+        .finally(() => console.log("finalizo la peticion"))
 }
 
-function consultarSaldo() {
-  console.log("Su saldo actual es:", saldo);
+function renderizarMovimientos(movimientos) {
+    movimientosContenedor.innerHTML = "";
+    movimientos.forEach(mov => {
+        let lista = document.createElement("div");
+        lista.innerHTML = `
+                    ${mov.fecha} -
+                    ${mov.descripcion} -
+                    $${mov.monto}`;
+        movimientosContenedor.appendChild(lista);
+    });
 }
 
-function depositar() {
-  const monto = parseInt(prompt("Ingrese el monto a depositar:"));
-  const confirmar = prompt("Seguro que desea depositar: $" + monto + " ?. si/no")
-  if (confirmar == "si"){
-    console.log("Depósito exitoso. Usted ha depositado: $", monto);
-  } else {
-    console.log("Operacion cancelada.");
-  }
-}
-
-function transferir() {
-  const destinatario = prompt("Ingrese alias o CVU del destinatario");
-  const monto = parseInt(prompt("Ingrese el monto a transferir:"));
-  const confirmar = prompt("Seguro que desea transferir: $" + monto + " a " + destinatario + " ?. si/no")
-  if (monto > saldo) {
-    console.log("Fondos insuficientes.");
-  } else if (confirmar == "si"){
-    console.log("Transferencia exitosa. Usted ha transferido: $", monto, "a", destinatario);
-  } else {
-    console.log("Operacion cancelada");
-  }
-}
-*/
-
-function inicioSesion() {
-  const usuario = document.getElementById("usuario");
-  const contraseña = document.getElementById("contraseña");
-
-  if(usuario === "fran11" && contraseña === "1234"){
-    window.location.href = "inicio.html"
-  } else {
-    alert("Usuario y/o contraseña incorrectos")
-  }
-}
+mostrarMovimientos();

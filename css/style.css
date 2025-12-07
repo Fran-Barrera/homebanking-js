@@ -1,0 +1,251 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #fff;
+    color: #111;
+}
+
+/** nav **/
+
+.nav-propia {
+    background-color: #5b1f83;
+}
+
+.nav-propia button {
+    padding: 10px;
+    margin: 5px;
+    background-color: #6e3791;
+    border: none;
+}
+
+.nav-propia button:hover {
+    background-color: #8f64b8;
+    box-shadow: 1px 1px 3px #ffffff6b;
+}
+
+.nav-propia button a {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+nav img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    margin: 5px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.logo img {
+    width: 400px;
+    height: 100px;
+}
+
+
+/** login **/
+
+h2 {
+    font-size: 28px;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container form {
+    width: 450px;
+    height: 450px;
+    background-color: #5b1f83;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #0a0a0ace;
+}
+
+.login-container label {
+    font-size: 30px;
+    color: #fff;
+    margin: 5px;
+    padding: 10px;
+}
+
+.login-container input {
+    font-size: 22px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.login-container button {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #6e3791;
+    color: #fff;
+}
+
+.login-container button:hover {
+    background-color: #8f64b8;
+    box-shadow: 1px 1px 3px #ffffff6b;
+}
+
+/** home **/
+
+h1 {
+    text-align: center;
+    margin: 20px;
+    padding: 25px;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-container {
+    width: 600px;
+    background-color: #5b1f83;
+    border-radius: 5px;
+    margin: 10px;
+    text-align: center;
+    font-size: 26px;
+    padding: 10px;
+    color: #fff;
+    box-shadow: 3px 3px 5px #0a0a0ace;
+}
+
+.saldo {
+    background-color: #8f64b8;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #0a0a0a49;
+}
+
+.transferencias,
+.movimientos {
+    background-color: #6e3791;
+    margin: 10px;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #0a0a0a49;
+}
+
+/** transferencia **/
+
+.transferencias {
+    display: flex;
+    flex-direction: column;
+}
+
+.transferencias form {
+    display: flex;
+    flex-direction: column;
+}
+
+.transferencias label {
+    margin: 5px;
+}
+
+.transferencias input,
+select {
+    border-radius: 5px;
+    background-color: #8f64b8;
+    border: #8f64b8 1px solid;
+    box-shadow: 3px 3px 3px #0a0a0a49;
+    color: #fff;
+    padding: 5px;
+}
+
+.transferencias input:hover,
+select:hover {
+    border: #ffffff28 1px solid;
+    box-shadow: 1px 1px 3px #ffffff6b;
+}
+
+.transferencias button {
+    margin-top: 10px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5b1f83;
+    color: #fff;
+    box-shadow: 3px 3px 5px #0a0a0a49;
+}
+
+.transferencias button:hover {
+    background-color: #8f64b8;
+    box-shadow: 1px 1px 3px #ffffff6b;
+}
+
+.movimientos h3 {
+    border-bottom: #fff 1px solid;
+    margin: 5px;
+    padding: 5px;
+}
+
+/** sobre nosotros **/
+
+.sobreNosotros-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.sobreNosotros-container img {
+    width: 500px;
+    height: 500px;
+    margin: 15px;
+}
+
+.sobreNosotros-container p {
+    margin: 10px;
+}
+
+.redes img {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+/** footer **/
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+footer img {
+    width: 180px;
+    height: 60px;
+    margin: 20px;
+}
